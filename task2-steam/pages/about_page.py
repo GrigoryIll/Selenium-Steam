@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class AboutPage(BasePage):
 
-    PAGE_URL = JsonUtility.value_from_json("links.main")
+    PAGE_URL = JsonUtility.value_from_json("links.about")
     STORE = (
         "xpath", "//*[@aria-label='Global Menu']//*[@data-tooltip-content='.submenu_Store']")
     ONLINE_PLAYERS = ("xpath", "//*[@class='online_stat']")

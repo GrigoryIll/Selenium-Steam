@@ -6,8 +6,19 @@ from pages.about_page import AboutPage
 class TestPlayersOnline(TestBase):
 
     def test_compare_online_players(self):
+
+        self.main_page.is_opened()
+        assert self.main_page.current_url() == self.main_page.PAGE_URL
+
         self.main_page.click_about_button()
+        print(self.main_page.current_url)
+        self.about_page.is_opened()
+        assert self.about_page.current_url() == self.about_page.PAGE_URL
+
         online_players = self.about_page.get_online_players()
         players_now = self.about_page.get_players_now()
         assert online_players > players_now, "Игроков онлайн меньше чем играющих"
+
         self.about_page.click_store_button()
+        self.main_page.is_opened()
+        assert self.main_page.current_url() == self.main_page.PAGE_URL

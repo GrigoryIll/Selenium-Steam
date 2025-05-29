@@ -1,7 +1,6 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from pages.main_page import MainPage
 
 
 class SingletonWebDriver:
@@ -20,11 +19,11 @@ class SingletonWebDriver:
             cls._instance = None
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture()
 def driver():
     options = Options()
     options.add_argument("--incognito")
-    options.add_argument("--window-size=1920,1080")
+    options.add_argument("---start-maximized")
     options.add_argument("--lang=en")
     driver = SingletonWebDriver.get_instance(options=options)
     yield driver

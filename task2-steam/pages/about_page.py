@@ -1,15 +1,18 @@
 from base.base_page import BasePage
-from data_config.json_utility import JsonUtility
 from selenium.webdriver.support import expected_conditions as EC
 
 
 class AboutPage(BasePage):
 
-    PAGE_URL = JsonUtility.value_from_json("links.about")
     STORE = (
         "xpath", "//*[@aria-label='Global Menu']//*[@data-tooltip-content='.submenu_Store']")
     ONLINE_PLAYERS = ("xpath", "//*[@class='online_stat']")
     PLAYERS_NOW = ("xpath", "//*[@class='online_stat']")
+    NEW_AND_NOTEWORTHY = (
+        "xpath", "//*[@id='noteworthy_tab']//*[@class='pulldown_desktop']")
+    TOP_SELLERS = (
+        "xpath", "//*[@class='popup_menu_item' and contains(text(), 'Sellers')]")
+    UNIQUE_ELEMENT = ("xpath", "//*[@class='online_stat']")
 
     def get_online_players(self):
         self.wait.until(EC.presence_of_all_elements_located(
@@ -41,3 +44,9 @@ class AboutPage(BasePage):
 
     def click_store_button(self):
         self.wait.until(EC.element_to_be_clickable(self.STORE)).click()
+
+    def click_top_sellers(self):
+        self.wait.until(EC.element_to_be_clickable(
+            self.NEW_AND_NOTEWORTHY)).click()
+        self.wait.until(EC.element_to_be_clickable(
+            self.TOP_SELLERS)).click()
